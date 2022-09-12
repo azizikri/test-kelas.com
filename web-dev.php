@@ -13,24 +13,7 @@ class Data {
   const STRING  = "aabbckkkml";
   const STRING1 = "aaaabsdfbhckkhfdkml";
 
-  public function countChar($string) {
-    $count = 1;
-    $result = "";
-    for ($i = 0; $i < strlen($string); $i++) {
-      if ($string[$i] == $string[$i + 1]) {
-        $count++;
-      } else {
-        if($count != 1){
-          $result .= $string[$i] . $count;
-        }
-        if($count == 1){
-          $result .= $string[$i];
-        }
-        $count = 1;
-      }
-    }
-    echo $result;
-  }
+
 
   /**
    * -- Menampilkan data dari yang telah diisi sesuai baris dan kolom (1 baris 60 kolom)
@@ -50,7 +33,7 @@ class Data {
    * ]
    *
    */
-  private array $numbers = [
+  public static array $numbers = [
     [93, 78, 14, 10, 31, 73, 18, 12, 1, 73, 48, 1, 16, 18, 39, 9, 21, 6, 80, 27, 63, 72, 14, 86, 99, 44, 52, 51, 22, 70, 28, 14, 57, 13, 3, 75, 45, 6, 96, 42, 74, 5, 14, 44, 95, 15, 19, 97, 76, 37, 4, 5, 54, 54, 53, 88, 75, 7, 17, 59],
     [81, 17, 9, 21, 1, 90, 52, 22, 22, 19, 84, 41, 28, 97, 75, 9, 82, 43, 28, 92, 49, 36, 79, 60, 42, 45, 26, 94, 59, 33, 69, 81, 35, 41, 47, 38, 97, 48, 46, 68, 15, 91, 21, 83, 19, 31, 91, 66, 20, 50, 80, 96, 89, 59, 47, 83, 45, 54, 55, 57],
     [53, 61, 43, 6, 15, 52, 45, 61, 53, 74, 42, 40, 55, 63, 78, 75, 89, 41, 43, 32, 70, 52, 43, 88, 7, 47, 3, 94, 76, 16, 78, 1, 44, 22, 71, 94, 63, 74, 29, 2, 25, 54, 18, 5, 13, 57, 64, 27, 79, 27, 69, 39, 29, 73, 80, 42, 75, 3, 46, 20],
@@ -1052,21 +1035,45 @@ class Data {
     [41, 42, 88, 61, 97, 54, 57, 85, 89, 61, 8, 43, 49, 38, 82, 56, 3, 18, 38, 82, 8, 10, 23, 90, 28, 80, 82, 28, 43, 68, 26, 57, 96, 83, 66, 38, 95, 89, 74, 8, 87, 70, 92, 34, 65, 92, 81, 82, 68, 46, 43, 33, 52, 66, 49, 54, 88, 37, 72, 27],
     [52, 74, 30, 60, 88, 20, 20, 34, 97, 76, 9, 84, 83, 85, 68, 85, 10, 56, 39, 16, 64, 45, 97, 40, 58, 70, 32, 32, 25, 63, 34, 80, 89, 83, 37, 39, 90, 97, 45, 25, 76, 97, 68, 18, 84, 2, 48, 64, 14, 40, 38, 19, 97, 69, 37, 1, 48, 86, 6, 92],
   ];
+}
 
-  function displayData($numbers) {
-    $row = 1;
-    foreach ($numbers as $key => $value) {
-      $value[0] = 'Baris'.$row;
-      $row++;
-      $prev = 0;
-      foreach ($value as $key => $val) {
-        if ($val == $prev) {
-          $val = "skip";
-        }
-        $prev = $val;
-        echo $val . " ";
+function countChar($string) {
+  $count = 1;
+  $result = "";
+  for ($i = 0; $i < strlen($string); $i++) {
+    if ($string[$i] == $string[$i + 1]) {
+      $count++;
+    } else {
+      if($count != 1){
+        $result .= $string[$i] . $count;
       }
-      echo "\n";
+      if($count == 1){
+        $result .= $string[$i];
+      }
+      $count = 1;
     }
   }
+  echo $result;
 }
+
+function displayData($numbers) {
+  $row = 1;
+  foreach ($numbers as $key => $value) {
+    $value[0] = 'Baris'.$row;
+    $row++;
+    $prev = 0;
+    foreach ($value as $key => $val) {
+      if ($val == $prev) {
+        $val = "skip";
+      }
+      $prev = $val;
+      echo $val . " ";
+    }
+    echo "\n";
+  }
+}
+
+countChar(Data::STRING);
+countChar(Data::STRING1);
+displayData(Data::$numbers);
+
