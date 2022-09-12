@@ -1056,7 +1056,7 @@ class Data {
   function displayData($numbers) {
     $row = 1;
     foreach ($numbers as $key => $value) {
-      $value[0] = $row;
+      $value[0] = 'Baris'.$row;
       $row++;
       $prev = 0;
       foreach ($value as $key => $val) {
